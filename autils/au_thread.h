@@ -11,6 +11,7 @@
 #include <string>
 #include <list>
 #include <memory>
+#include <sstream>
 
 namespace au {
 	namespace thread{
@@ -181,12 +182,6 @@ namespace au {
 
 		m_threadId = m_thread->get_id();
 
-#if defined(_MSC_VER) && defined(_WIN32)
-		HWND thread_hwd = (HWND)m_thread->native_handle();
-		m_thread_name = _thread_name;
-		WIN32_Thread_Setting(thread_hwd, _priority, m_thread_name, ThreadID());
-#endif
-
 		m_thread->detach();
 
 		while (!is_thread_ready) { au::sleep_ms(1); }
@@ -267,15 +262,10 @@ namespace au {
 	}
 	AU_INLINE std::string cppThread::ThreadName()
 	{
-#if defined(_MSC_VER) && defined(_WIN32)
-		return m_thread_name;
-#else
 		std::ostringstream ss;
 		ss << m_threadId;
 		m_thread_name = ss.str();
 		return m_thread_name;
-#endif
-
 	}
 	AU_INLINE int cppThread::ThreadID()
 	{
@@ -294,51 +284,6 @@ namespace au {
 	}
 
 #pragma endregion
-
-
-#if defined(_MSC_VER) && defined(_WIN32)
-	AU_INLINE static void WIN32_Thread_Setting(HWND thread_handle, eThreadPriority priority, std::string threadName, int threadID)
-	{
-		typedef struct tagTHREADNAME_INFO
-		{
-			DWORD dwType; // must be 0x1000
-			LPCSTR szName; // pointer to name (in user addr space)
-			DWORD dwThreadID; // thread ID (-1=caller thread)
-			DWORD dwFlags; // reserved for future use, must be zero
-		} THREADNAME_INFO;
-
-		THREADNAME_INFO info;
-		info.dwType = 0x1000;
-		info.szName = threadName != "" ? threadName.c_str() : "WorkingThread";
-		info.dwThreadID = threadID;
-		info.dwFlags = 0;
-
-		//__try
-		//{
-			RaiseException(0x406D1388, 0, sizeof(info) / sizeof(DWORD), (ULONG_PTR*)&info);
-		//}
-		//__except (EXCEPTION_CONTINUE_EXECUTION)
-		//{
-
-		//}
-
-		// Set the priority based on required priority
-		bool is;
-		switch (priority)
-		{
-		case eThreadPriority::HIGHER:
-			is = SetThreadPriority(thread_handle, THREAD_PRIORITY_ABOVE_NORMAL);
-			break;
-		case eThreadPriority::LOWER:
-			is = SetThreadPriority(thread_handle, THREAD_PRIORITY_BELOW_NORMAL);
-			break;
-		case eThreadPriority::SAME:
-		default:
-			break;
-		}
-	}
-#endif
-
 	} // namesapce thread
 }// namespace au
 
