@@ -18,7 +18,7 @@ add_executable(${PROJECTNAME})
 target_include_directories( 
     ${PROJECTNAME} 
     PUBLIC ${INC_DIR} 
-    PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/../autilitys" 
+    PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/../autils" 
 )
 
 target_sources( 

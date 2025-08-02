@@ -108,7 +108,7 @@ namespace au {
 }
 
 
-#include "module_def.h"
+#include "au_module_def.h"
 
 
 #ifdef USING_AU_EXCEPTION

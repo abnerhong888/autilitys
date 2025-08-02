@@ -1,6 +1,6 @@
 #ifndef __AUTILITY_AUTHREAD_H__
 #define __AUTILITY_AUTHREAD_H__
-#include "common.h"
+#include "au_common.h"
 
 #ifdef USING_AU_THREAD
 

@@ -1,7 +1,7 @@
 #ifndef __AUTILITY_AUMATH_H__
 #define __AUTILITY_AUMATH_H__
 
-#include "common.h"
+#include "au_common.h"
 
 #ifdef USING_AU_MATH
 
@@ -9,7 +9,7 @@
 #error Must define USING_AU_TYPES if using math define.
 #endif
 
-#include "types.h"
+#include "au_types.h"
 
 #include <math.h> 
 #include <cfloat>

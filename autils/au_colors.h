@@ -1,6 +1,6 @@
 #ifndef __AUTILITY_COLORS_H__
 #define __AUTILITY_COLORS_H__
-#include "common.h"
+#include "au_common.h"
 
 
 
@@ -10,7 +10,7 @@
 #error Must define USING_AU_TYPES if using color define.
 #endif
 
-#include "types.h"
+#include "au_types.h"
 
 namespace au {
 	namespace colors {

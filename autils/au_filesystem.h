@@ -1,7 +1,7 @@
 #ifndef __AUTILITY_FILESYSTEM_H__
 #define __AUTILITY_FILESYSTEM_H__
 
-#include "common.h"
+#include "au_common.h"
 
 #ifdef USING_AU_FILE_SYSTEM
 

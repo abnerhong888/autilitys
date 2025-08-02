@@ -1,58 +1,58 @@
 #ifndef __AUTILITY_UTILITYS_H__
 #define __AUTILITY_UTILITYS_H__
 
-#include "module_def.h"
+#include "au_module_def.h"
 
 #ifdef USING_AU_LOGGER
-#include "logger.h"
+#include "au_logger.h"
 #endif
 
 #ifdef USING_AU_PTR
-#include "ptr.h"
+#include "au_ptr.h"
 #endif
 
 #ifdef USING_AU_STRING_CVT
-#include "stringCvt.h"
+#include "au_stringCvt.h"
 #endif
 
 #ifdef USING_AU_TYPES
-#include "types.h"
+#include "au_types.h"
 #endif
 
 #ifdef USING_AU_COLOR
-#include "colors.h"
+#include "au_colors.h"
 #endif
 
 #ifdef USING_AU_TIMER
-#include "timer.h"
+#include "au_timer.h"
 #endif
 
 #ifdef USING_AU_FILE_SYSTEM
-#include "filesystem.h"
+#include "au_filesystem.h"
 #endif
 
 #ifdef USING_AU_EXCEPTION
-#include "exception.h"
+#include "au_exception.h"
 #endif
 
 #ifdef USING_AU_MATH
-#include "aumath.h"
+#include "au_math.h"
 #endif
 
 #ifdef USING_AU_THREAD
-#include "authread.h"
+#include "au_thread.h"
 #endif
 
 #ifdef USING_AU_INI
-#include "ini.h"
+#include "au_ini.h"
 #endif
 
 #ifdef USING_AU_PARALLEL_FOR
-#include "parallel_for.h"
+#include "au_parallel_for.h"
 #endif
 
 #ifdef USING_AU_COMMAND_LINE
-#include "command_line.h"
+#include "au_command_line.h"
 #endif
 
 #endif //__AUTILITY_UTILITYS_H__

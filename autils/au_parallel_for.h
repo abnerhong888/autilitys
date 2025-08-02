@@ -1,13 +1,13 @@
 #ifndef __AUTILITY_PARALLEL_FOR_H__
 #define __AUTILITY_PARALLEL_FOR_H__
 
-#include "common.h"
+#include "au_common.h"
 
 #ifndef USING_AU_THREAD
 #error Must define USING_AU_THREAD if using thread define.
 #endif
 
-#include "authread.h"
+#include "au_thread.h"
 #include <functional>
 #include <memory>
 #ifdef USING_AU_PARALLEL_FOR

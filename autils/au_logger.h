@@ -1,7 +1,7 @@
 #ifndef __AUTILITY_LOGGER_H__
 #define __AUTILITY_LOGGER_H__
 
-#include "common.h"
+#include "au_common.h"
 
 #ifdef USING_AU_LOGGER
 
@@ -21,7 +21,7 @@
 #endif
 
 #ifdef USING_AU_EXCEPTION
-#include "exception.h"
+#include "au_exception.h"
 #endif
 
 #ifndef USING_AU_FILE_SYSTEM
@@ -29,10 +29,10 @@
 #endif
 
 #ifdef USING_AU_THREAD
-#include "authread.h"
+#include "au_thread.h"
 #endif
 
-#include "filesystem.h"
+#include "au_filesystem.h"
 
 
 namespace au {

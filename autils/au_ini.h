@@ -1,7 +1,7 @@
 #ifndef __AUTILITY_INI_H__
 #define __AUTILITY_INI_H__
 
-#include "common.h"
+#include "au_common.h"
 
 #ifdef USING_AU_INI
 

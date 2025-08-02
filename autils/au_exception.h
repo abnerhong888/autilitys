@@ -1,7 +1,7 @@
 #ifndef __AUTILITY_EXCEPTION_H__
 #define __AUTILITY_EXCEPTION_H__
 
-#include "common.h"
+#include "au_common.h"
 
 #ifdef USING_AU_EXCEPTION
 

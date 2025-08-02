@@ -1,7 +1,7 @@
 #ifndef __AUTILITY_PTR_H__
 #define __AUTILITY_PTR_H__
 
-#include "common.h"
+#include "au_common.h"
 
 #ifdef USING_AU_PTR
 

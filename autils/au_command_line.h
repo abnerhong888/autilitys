@@ -1,12 +1,12 @@
 #ifndef __AUTILITY_COMMAND_LINE_H__
 #define __AUTILITY_COMMAND_LINE_H__
 
-#include "common.h"
+#include "au_common.h"
 
 #ifdef USING_AU_COMMAND_LINE
 
 #ifdef USING_AU_EXCEPTION
-#include "exception.h"
+#include "au_exception.h"
 #endif
 
 #include <string>
