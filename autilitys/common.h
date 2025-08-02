@@ -36,7 +36,17 @@
 
 
 #if defined(__GNUC__)
-
+#	if defined(AU_DLL)
+#		ifdef AU_DLL_EXPORT
+#			define AU_API __attribute__((visibility("default")))
+#		else
+#			define AU_API 
+#		endif
+#		define AU_INLINE
+#	else
+#		define AU_API
+#		define AU_INLINE inline
+#	endif //AU_DLL
 #endif //__GNUC__
 
 
@@ -143,4 +153,4 @@ namespace au {
 			} while (0)
 #endif
 
-#endif __AUTILITY_COMMON_H__
+#endif //__AUTILITY_COMMON_H__

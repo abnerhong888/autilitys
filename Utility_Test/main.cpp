@@ -83,7 +83,7 @@ void Logger_Console_Test()
 	log::console::Debug(("time {}"), time::timer::get_duration<time::milli>());
 	log::console::Debug(("now {} "), au::to_string(time::now()).c_str());
 	using namespace std::literals::chrono_literals;
-	log::console::Debug(("now {} "), 0.1h);
+	log::console::Debug(("now {} "), 1h);
 
 	log::console::Write(log::eLevel::info, "test info {}", 123);
 	log::console::Write(log::eLevel::err, "test err {}", 123);
@@ -132,9 +132,9 @@ void FileSystem_Test()
 {
 	log::console::Write(log::eLevel::none,"\n========= FileSystem_Test =========\n");
 
-	bool t = au::fs::is_directory("D:/Desktop/新增資料夾");
-	int file_count = au::fs::file_count("D:/Desktop/新增資料夾");
-	auto files = fs::list_files("D:/Desktop/新增資料夾");
+	bool t = au::fs::is_directory("./Log");
+	int file_count = au::fs::file_count("./Log");
+	auto files = fs::list_files("./Log");
 
 	fs::sort_by_date(files);
 	auto files_overdays = fs::check_over_days(files, 30);

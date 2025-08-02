@@ -25,6 +25,11 @@
 #	endif
 #endif // _MSC_VER
 
+#if defined(__GNUC__)
+#	include <experimental/filesystem>
+	namespace stdfs = std::experimental::filesystem;
+#endif //__GNUC__
+
 
 #include <vector>
 #include <string>

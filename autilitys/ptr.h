@@ -40,7 +40,7 @@ namespace au {
 		struct ptr : public std::shared_ptr<T>
 		{
 			AU_INLINE ptr() noexcept : std::shared_ptr<T>() {}
-			AU_INLINE ptr(nullptr_t) noexcept : std::shared_ptr<T>(nullptr) {}
+			AU_INLINE ptr(std::nullptr_t) noexcept : std::shared_ptr<T>(nullptr) {}
 
 			AU_INLINE ptr(const ptr<T>& p) noexcept : std::shared_ptr<T>(p) {}
 

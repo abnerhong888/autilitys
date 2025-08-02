@@ -109,7 +109,7 @@ namespace au {
 		template<typename T>
 		AU_INLINE static void CustomStaticThreadEntry(void* user_data)
 		{
-			(reinterpret_cast<T*>(user_data))->CustomThreadEntry<T>(user_data);
+			(reinterpret_cast<T*>(user_data))->CustomThreadEntry(user_data);
 		}
 
 		template<typename T>

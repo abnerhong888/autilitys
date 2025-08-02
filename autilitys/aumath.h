@@ -12,6 +12,7 @@
 #include "types.h"
 
 #include <math.h> 
+#include <cfloat>
 
 namespace au {
 	namespace math {

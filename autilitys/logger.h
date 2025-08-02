@@ -140,7 +140,7 @@ namespace au {
 				tuples_to_type_map(std::tuple<Tp...>& t)
 			{
 				std::vector<std::string> type_map_value;
-				const char* v = typeid(std::decay< decltype(std::get<I>(t)) >::type).name();
+				const char* v = typeid(typename  std::decay< decltype(std::get<I>(t)) >::type ).name();
 
 				AU_ASSERT(global::type_string.count(v) > 0,
 					"Can not find type name in type_string, try to use au::to_string as Args.");

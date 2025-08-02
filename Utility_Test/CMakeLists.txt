@@ -35,4 +35,4 @@ target_compile_definitions( ${PROJECTNAME}  PUBLIC
     $<$<CONFIG:MinSizeRel>:RELEASE>
 )
 
-
+target_link_libraries(${PROJECTNAME} PUBLIC stdc++fs)

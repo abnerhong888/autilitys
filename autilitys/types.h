@@ -11,6 +11,8 @@
 
 #include <string>
 #include <initializer_list>
+#include <cstring>
+#include <cmath>
 
 namespace au {
 	namespace types {
@@ -174,9 +176,9 @@ typedef NAME(_type, _n)
 			AU_ENABLE_IF_NOT(std::is_pointer<SRC>), AU_ENABLE_IF_NOT(std::is_pointer<Dst>)>
 		AU_INLINE static Dst convert(const SRC& src) {
 			Dst r;
-			AU_STATIC_ASSERT(Dst::channels == SRC::channels, "Channel size is different.");
+			AU_STATIC_ASSERT(static_cast<int>(Dst::channels) == static_cast<int>(SRC::channels), "Channel size is different.");
 			for (int i = 0; i < r.channels; i++)
-				r.v[i] = static_cast<Dst::value_type>(src.v[i]);
+				r.v[i] = static_cast<typename Dst::value_type>(src.v[i]);
 			return r;
 		}
 
