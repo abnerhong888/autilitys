@@ -19,6 +19,16 @@
             "cacheVariables": {
                 "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
             }
+        },
+
+        {
+            "name": "unix",
+            "hidden": false,
+            "generator": "Unix Makefiles",
+            "description": "Use Unix Makefiles generator by default",
+            "cacheVariables": {
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+            }
         }
     ]
 }

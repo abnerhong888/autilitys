@@ -36,6 +36,7 @@
 #include <chrono>
 #include <regex>
 #include <functional>
+#include <cstring>
 
 namespace au {
 	namespace fs {

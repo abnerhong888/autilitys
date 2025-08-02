@@ -18,34 +18,36 @@ namespace au {
             
         } // namespace global
         
-        typedef struct _handle{
+        typedef struct _udo_handle{
             std::string backend;
-        }handle;
+            std::string ip;
+            uint32_t port;
+        }udo_handle;
 
        
-        class AU_API UDPServer{
+        class AU_API UDPServer: public thread::cppThread{
         public:
-            UDPServer(handle _handle){
+            UDPServer(udo_handle _handle): cppThread("udp_server"){
                 handle = _handle;
             }
             ~UDPServer(){
                 
             }
         private:
-            handle handle;
+            udo_handle handle;
         };
         
 
-        class AU_API UDPClient{
+        class AU_API UDPClient : public thread::cppThread{
         public:
-            UDPClient(handle _handle){
+            UDPClient(udo_handle _handle): cppThread("udp_client"){
                 handle = _handle;
             }
             ~UDPClient(){
                 
             }
         private:
-            handle handle;
+            udo_handle handle;
         };
 
     } // namespace protoco
