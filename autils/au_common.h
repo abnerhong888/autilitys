@@ -60,6 +60,14 @@
 #   define AU_FILE __FILE__
 #endif
 
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <chrono>
+#include <string> 
+#include <chrono>
+#include <type_traits>
+
 #define AU_ENABLE_IF(is_xxx) typename = typename std::enable_if<is_xxx::value>::type
 #define AU_ENABLE_IF_NOT(is_xxx) typename = typename std::enable_if<!is_xxx::value>::type
 

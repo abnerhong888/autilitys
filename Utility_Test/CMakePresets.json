@@ -9,6 +9,16 @@
             "cacheVariables": {
                 "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
             }
+        },
+
+        {
+            "name": "vs2022",
+            "hidden": false,
+            "generator": "Visual Studio 17 2022",
+            "description": "Use Visual Studio 17 2022 generator by default",
+            "cacheVariables": {
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+            }
         }
     ]
 }

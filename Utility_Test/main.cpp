@@ -1,6 +1,6 @@
 ﻿#include <iostream>
-#include "stdio.h"
-#include "stdlib.h"
+#include <stdio.h>
+#include <stdlib.h>
 #include <chrono>
 #include "au_utils.h"
 
@@ -22,6 +22,9 @@ void Thread_Pool_Test();
 void INI_TEST();
 void Parallel_For_Test();
 void Command_Line_TEST();
+
+
+#define UNIT_TEST(__func) if(__func()) log::console::Debug("test: %s pass", #__func); else log::console::Error("test: %s fail", #__func);
 
 int main()
 {
@@ -89,6 +92,7 @@ void Logger_Console_Test()
 	log::console::Write(log::eLevel::err, "test err {}", 123);
 	log::console::Write(log::eLevel::warn, "test warn {}", 123);
 	log::console::Write(log::eLevel::none, "test none {}", 123);
+	log::console::Write(log::eLevel::none, "test none {0x16}", 0x1111111122223333UL);
 }
 
 void Logger_Test()
@@ -98,6 +102,8 @@ void Logger_Test()
 	log::logger a("123", 0);
 	a.Write(log::eLevel::debug, "121213123131213");
 	a.Write(log::eLevel::debug, "ss");
+	a.Write(log::eLevel::debug, "%d", 1000);
+
 
 	log::logger_map::assign("1", new log::logger("1", 0) );
 	//log::logger_map::assign("1", new log::logger("2"));
@@ -109,7 +115,7 @@ void Logger_Thread_Test()
 	log::console::Write(log::eLevel::none,"\n========= Logger_Thread_Test =========\n");
 
 	log::logger* test_log_thread = new log::logger_thread("logThread", au::log::eMode::queue, 0);
-
+	
 	log::logger_map::assign("logThread", test_log_thread);
 
 	log::logger_map::get("logThread")->Write(au::log::eLevel::warn, "test");

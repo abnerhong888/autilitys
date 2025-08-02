@@ -35,4 +35,7 @@ target_compile_definitions( ${PROJECTNAME}  PUBLIC
     $<$<CONFIG:MinSizeRel>:RELEASE>
 )
 
-target_link_libraries(${PROJECTNAME} PUBLIC stdc++fs)
+if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+    target_link_libraries(${PROJECTNAME} PUBLIC stdc++fs)
+endif()
+
