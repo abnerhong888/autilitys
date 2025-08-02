@@ -1,5 +1,5 @@
-#ifndef __AUTILITY_STRING_CVT_H__
-#define __AUTILITY_STRING_CVT_H__
+#ifndef __AU_STRING_CVT_H__
+#define __AU_STRING_CVT_H__
 #include "au_common.h"
 
 #ifdef USE_AU_STRING_CVT
@@ -116,5 +116,5 @@ namespace au {
 
 #endif //USE_AU_STRING_CVT
 
-#endif //__AUTILITY_STRING_CVT_H__
+#endif //__AU_STRING_CVT_H__
 

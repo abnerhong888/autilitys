@@ -1,5 +1,5 @@
-#ifndef __AUTILITY_AUTHREAD_H__
-#define __AUTILITY_AUTHREAD_H__
+#ifndef __AU_AUTHREAD_H__
+#define __AU_AUTHREAD_H__
 #include "au_common.h"
 
 #ifdef USE_AU_THREAD
@@ -572,4 +572,4 @@ namespace au {
 
 #endif // USE_AU_THREAD
 
-#endif // __AUTILITY_AUTHREAD_H__
+#endif // __AU_AUTHREAD_H__

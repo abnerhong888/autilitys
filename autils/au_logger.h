@@ -1,5 +1,5 @@
-#ifndef __AUTILITY_LOGGER_H__
-#define __AUTILITY_LOGGER_H__
+#ifndef __AU_LOGGER_H__
+#define __AU_LOGGER_H__
 
 #include "au_common.h"
 
@@ -531,4 +531,4 @@ namespace au {
 
 #endif // USE_AU_LOGGER
 
-#endif //__AUTILITY_LOGGER_H__
+#endif //__AU_LOGGER_H__

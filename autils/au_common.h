@@ -1,5 +1,5 @@
-#ifndef __AUTILITY_COMMON_H__
-#define __AUTILITY_COMMON_H__
+#ifndef __AU_COMMON_H__
+#define __AU_COMMON_H__
 
 #if defined(_MSC_VER)
 #   if _MSC_VER < 1900
@@ -161,4 +161,4 @@ namespace au {
 			} while (0)
 #endif
 
-#endif //__AUTILITY_COMMON_H__
+#endif //__AU_COMMON_H__

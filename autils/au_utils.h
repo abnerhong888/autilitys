@@ -1,5 +1,5 @@
-#ifndef __AUTILITY_UTILITYS_H__
-#define __AUTILITY_UTILITYS_H__
+#ifndef __AU_UTILITYS_H__
+#define __AU_UTILITYS_H__
 
 #include "au_module_def.h"
 
@@ -55,4 +55,4 @@
 #include "au_command_line.h"
 #endif
 
-#endif //__AUTILITY_UTILITYS_H__
+#endif //__AU_UTILITYS_H__

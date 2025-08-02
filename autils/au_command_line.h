@@ -1,5 +1,5 @@
-#ifndef __AUTILITY_COMMAND_LINE_H__
-#define __AUTILITY_COMMAND_LINE_H__
+#ifndef __AU_COMMAND_LINE_H__
+#define __AU_COMMAND_LINE_H__
 
 #include "au_common.h"
 
@@ -333,4 +333,4 @@ namespace au {
 
 #endif //USE_AU_COMMAND_LINE
 
-#endif //__AUTILITY_COMMAND_LINE_H__
+#endif //__AU_COMMAND_LINE_H__

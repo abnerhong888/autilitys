@@ -1,5 +1,5 @@
-#ifndef __AUTILITY_TIMER_H__
-#define __AUTILITY_TIMER_H__
+#ifndef __AU_TIMER_H__
+#define __AU_TIMER_H__
 #include "au_common.h"
 
 #ifdef USE_AU_TIMER
@@ -156,4 +156,4 @@ namespace au {
 
 #endif //USE_AU_TIMER
 
-#endif //__AUTILITY_TIMER_H__
+#endif //__AU_TIMER_H__

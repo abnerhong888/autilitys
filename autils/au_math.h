@@ -1,5 +1,5 @@
-#ifndef __AUTILITY_AUMATH_H__
-#define __AUTILITY_AUMATH_H__
+#ifndef __AU_AUMATH_H__
+#define __AU_AUMATH_H__
 
 #include "au_common.h"
 
@@ -289,4 +289,4 @@ namespace au {
 
 #endif //USE_AU_MATH
 
-#endif // __AUTILITY_MATH_H__
+#endif // __AU_MATH_H__

@@ -1,5 +1,5 @@
-#ifndef __AUTILITY_TYPES_H__
-#define __AUTILITY_TYPES_H__
+#ifndef __AU_TYPES_H__
+#define __AU_TYPES_H__
 
 #include "au_common.h"
 
@@ -635,4 +635,4 @@ typedef NAME(_type, _n)
 
 #endif // USE_AU_TYPES
 
-#endif // __AUTILITY_TYPES_H__
+#endif // __AU_TYPES_H__

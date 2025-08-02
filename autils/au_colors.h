@@ -1,5 +1,5 @@
-#ifndef __AUTILITY_COLORS_H__
-#define __AUTILITY_COLORS_H__
+#ifndef __AU_COLORS_H__
+#define __AU_COLORS_H__
 #include "au_common.h"
 
 
@@ -568,4 +568,4 @@ namespace au
 
 #endif //USE_AU_COLOR
 
-#endif //__AUTILITY_COLORS_H__
+#endif //__AU_COLORS_H__

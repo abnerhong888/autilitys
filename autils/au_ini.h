@@ -1,5 +1,5 @@
-#ifndef __AUTILITY_INI_H__
-#define __AUTILITY_INI_H__
+#ifndef __AU_INI_H__
+#define __AU_INI_H__
 
 #include "au_common.h"
 
@@ -375,4 +375,4 @@ namespace au {
 
 
 #endif //USE_AU_INI
-#endif //__AUTILITY_INI_H__
+#endif //__AU_INI_H__

@@ -1,5 +1,5 @@
-#ifndef __AUTILITY_PTR_H__
-#define __AUTILITY_PTR_H__
+#ifndef __AU_PTR_H__
+#define __AU_PTR_H__
 
 #include "au_common.h"
 
@@ -118,7 +118,7 @@ namespace au {
 
 #endif //USE_AU_PTR
 
-#endif //__AUTILITY_PTR_H__
+#endif //__AU_PTR_H__
 
 
 

@@ -1,5 +1,5 @@
-#ifndef __AUTILITY_EXCEPTION_H__
-#define __AUTILITY_EXCEPTION_H__
+#ifndef __AU_EXCEPTION_H__
+#define __AU_EXCEPTION_H__
 
 #include "au_common.h"
 
@@ -161,4 +161,4 @@ namespace au{
 
 #endif //USE_AU_EXCEPTION
 
-#endif //__AUTILITY_EXCEPTION_H__
+#endif //__AU_EXCEPTION_H__
