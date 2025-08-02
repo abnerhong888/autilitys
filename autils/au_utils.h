@@ -55,4 +55,8 @@
 #include "au_command_line.h"
 #endif
 
+#ifdef USE_AU_PROTOCO
+#include "au_protoco.h"
+#endif
+
 #endif //__AU_UTILITYS_H__

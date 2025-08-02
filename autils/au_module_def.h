@@ -13,3 +13,4 @@
 #define USE_AU_INI
 #define USE_AU_PARALLEL_FOR
 #define USE_AU_COMMAND_LINE
+#define USE_AU_PROTOCO

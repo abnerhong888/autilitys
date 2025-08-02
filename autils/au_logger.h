@@ -215,7 +215,7 @@ namespace au {
 		}
 
 
-		void set_log_folder(std::string _folder_path) {
+		AU_INLINE void set_log_folder(std::string _folder_path) {
 			global::log_folder = _folder_path;
 		}
 		
