@@ -92,7 +92,7 @@ void Logger_Console_Test()
 	log::console::Write(log::eLevel::err, "test err {}", 123);
 	log::console::Write(log::eLevel::warn, "test warn {}", 123);
 	log::console::Write(log::eLevel::none, "test none {}", 123);
-	log::console::Write(log::eLevel::none, "test none {0x16}", 0x1111111122223333UL);
+	log::console::Write(log::eLevel::none, "test none {0x15}", 0x1111111122223333UL);
 }
 
 void Logger_Test()

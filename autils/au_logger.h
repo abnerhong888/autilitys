@@ -15,6 +15,7 @@
 #include <chrono>
 #include <fstream>
 #include <memory>
+#include <cstdarg>
 
 #if defined(_MSC_VER)
 #include "windows.h"
@@ -103,9 +104,9 @@ namespace au {
 				{"{f6}", "%.6f"}, {"{f7}", "%.7f"}, {"{f8}", "%.8f"}, {"{f9}", "%.9f"},
 
 				{"{0x}", "0x%x"}, {"{0x1}", "0x%01x"}, {"{0x2}", "0x%02x"}, {"{0x3}", "0x%03x"}, {"{0x4}", "0x%04x"}, 
-				{"{0x5}", "0x%05x"}, {"{0x6}", "0x%06x"}, {"{0x7}", "0x%07x"}, {"{0x8}", "0x%08x"}, {"{0x9}", "0x%09x"}, 
-				{"{0x10}", "0x%010x"}, {"{0x11}", "0x%011x"}, {"{0x12}", "0x%012x"}, {"{0x13}", "0x%013x"}, 
-				{"{0x14}", "0x%014x"}, {"{0x15}", "0x%015x"}, {"{0x16}", "0x%016x"},
+				{"{0x5}", "0x%05x"}, {"{0x6}", "0x%06x"}, {"{0x7}", "0x%07x"}, {"{0x8}", "0x%08x"}, {"{0x9}", "0x%09lx"}, 
+				{"{0x10}", "0x%010lx"}, {"{0x11}", "0x%011lx"}, {"{0x12}", "0x%012lx"}, {"{0x13}", "0x%013lx"}, 
+				{"{0x14}", "0x%014lx"}, {"{0x15}", "0x%015lx"}, {"{0x16}", "0x%016lx"},
 				
 				{"{c}", "%c"},
 				{"{s}", "%s"},
@@ -290,7 +291,7 @@ namespace au {
 				std::string str = au::to_string(std::chrono::system_clock::now()) + " ";
 				str += std::move(global::level_string[static_cast<size_t>(level)]);
 				str += helper::to_format_string(std::move(fmt), std::forward<Args>(args)...) + "\n";
-				sprintf(text_buf, str.c_str(), args...);
+				helper_sprintf(text_buf, str.c_str(), args...);
 			}
 			template<typename... Args>
 			AU_INLINE void _Write_Buffer(eLevel level, std::string& fmt, Args &&...args)
@@ -298,7 +299,7 @@ namespace au {
 				std::string str = au::to_string(std::chrono::system_clock::now()) + " ";
 				str += std::move(global::level_string[static_cast<size_t>(level)]);
 				str += helper::to_format_string(std::move(fmt), std::forward<Args>(args)...) + "\n";
-				sprintf(text_buf, str.c_str(), args...);
+				helper_sprintf(text_buf, str.c_str(), args...);
 			}
 
 			AU_INLINE void _Write_File(const char* _buf) {
@@ -313,7 +314,12 @@ namespace au {
 			std::ofstream file;
 			char text_buf[1024] = { 0 };
 		private:
-			
+			AU_INLINE void helper_sprintf(const char* fmt, ...) {
+				va_list args;
+				va_start(args, fmt);
+				sprintf(text_buf, fmt, args);
+				va_end(args);
+			}
 
 			bool is_logger_thread = false;
 		}; // class logger
@@ -466,16 +472,22 @@ namespace au {
 			{
 				std::string str(std::move(global::level_string[static_cast<size_t>(level)]));
 				str += helper::to_format_string(std::move(fmt), std::forward<Args>(args)...) + "\n";
-				printf(str.c_str(), args...);
+				helper_print(str.c_str(), args...);
 			}
 			template<typename... Args>
 			AU_INLINE static void Write(eLevel level, std::string& fmt, Args &&...args)
 			{
 				std::string str(std::move(global::level_string[static_cast<size_t>(level)]));
 				str += helper::to_format_string(std::move(fmt), std::forward<Args>(args)...) + "\n";
-				printf(str.c_str(), args...);
+				helper_print(str.c_str(), args...);
 			}
 			
+			AU_INLINE static void helper_print(const char* fmt, ...) {
+				va_list args;
+				va_start(args, fmt);
+				vprintf(fmt, args);
+				va_end(args);
+			}
 		protected:
 
 		private:
