@@ -3,55 +3,55 @@
 
 #include "au_module_def.h"
 
-#ifdef USING_AU_LOGGER
+#ifdef USE_AU_LOGGER
 #include "au_logger.h"
 #endif
 
-#ifdef USING_AU_PTR
+#ifdef USE_AU_PTR
 #include "au_ptr.h"
 #endif
 
-#ifdef USING_AU_STRING_CVT
+#ifdef USE_AU_STRING_CVT
 #include "au_stringCvt.h"
 #endif
 
-#ifdef USING_AU_TYPES
+#ifdef USE_AU_TYPES
 #include "au_types.h"
 #endif
 
-#ifdef USING_AU_COLOR
+#ifdef USE_AU_COLOR
 #include "au_colors.h"
 #endif
 
-#ifdef USING_AU_TIMER
+#ifdef USE_AU_TIMER
 #include "au_timer.h"
 #endif
 
-#ifdef USING_AU_FILE_SYSTEM
+#ifdef USE_AU_FILE_SYSTEM
 #include "au_filesystem.h"
 #endif
 
-#ifdef USING_AU_EXCEPTION
+#ifdef USE_AU_EXCEPTION
 #include "au_exception.h"
 #endif
 
-#ifdef USING_AU_MATH
+#ifdef USE_AU_MATH
 #include "au_math.h"
 #endif
 
-#ifdef USING_AU_THREAD
+#ifdef USE_AU_THREAD
 #include "au_thread.h"
 #endif
 
-#ifdef USING_AU_INI
+#ifdef USE_AU_INI
 #include "au_ini.h"
 #endif
 
-#ifdef USING_AU_PARALLEL_FOR
+#ifdef USE_AU_PARALLEL_FOR
 #include "au_parallel_for.h"
 #endif
 
-#ifdef USING_AU_COMMAND_LINE
+#ifdef USE_AU_COMMAND_LINE
 #include "au_command_line.h"
 #endif
 

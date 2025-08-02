@@ -3,7 +3,7 @@
 
 #include "au_common.h"
 
-#ifdef USING_AU_FILE_SYSTEM
+#ifdef USE_AU_FILE_SYSTEM
 
 #if _MSC_VER
 #	ifdef AU_VS_2019 
@@ -200,6 +200,6 @@ namespace au {
 	}
 }
 
-#endif //USING_AU_FILE_SYSTEM
+#endif //USE_AU_FILE_SYSTEM
 
 #endif // __AUTILITY_FILESYSTEM_H__

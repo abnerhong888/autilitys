@@ -111,7 +111,7 @@ namespace au {
 #include "au_module_def.h"
 
 
-#ifdef USING_AU_EXCEPTION
+#ifdef USE_AU_EXCEPTION
 //#       define AU_ASSERT(condition, message)\
 //        (!(condition)) ?\
 //            (std::cerr << "Assertion failed: (" << #condition << "): "\
@@ -137,7 +137,7 @@ namespace au {
 #define AU_TRY try
 #define AU_CATCH catch(std::exception e)
 
-#ifdef USING_AU_EXCEPTION
+#ifdef USE_AU_EXCEPTION
 // _eType example = exception::etype::NULL_POINTER
 #	define AU_THROW_ERR(_what, _eType) \
 			do {\

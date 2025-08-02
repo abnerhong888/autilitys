@@ -3,14 +3,14 @@
 
 #include "au_common.h"
 
-#ifndef USING_AU_THREAD
-#error Must define USING_AU_THREAD if using thread define.
+#ifndef USE_AU_THREAD
+#error Must define USE_AU_THREAD if using thread define.
 #endif
 
 #include "au_thread.h"
 #include <functional>
 #include <memory>
-#ifdef USING_AU_PARALLEL_FOR
+#ifdef USE_AU_PARALLEL_FOR
 
 namespace au {
 	namespace parallel {
@@ -126,6 +126,6 @@ namespace au {
 	}
 }
 
-#endif // USING_AU_PARALLEL_FOR
+#endif // USE_AU_PARALLEL_FOR
 
 #endif //__AUTILITY_PARALLEL_FOR_H__

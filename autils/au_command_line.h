@@ -3,9 +3,9 @@
 
 #include "au_common.h"
 
-#ifdef USING_AU_COMMAND_LINE
+#ifdef USE_AU_COMMAND_LINE
 
-#ifdef USING_AU_EXCEPTION
+#ifdef USE_AU_EXCEPTION
 #include "au_exception.h"
 #endif
 
@@ -331,6 +331,6 @@ namespace au {
 	}
 }
 
-#endif //USING_AU_COMMAND_LINE
+#endif //USE_AU_COMMAND_LINE
 
 #endif //__AUTILITY_COMMAND_LINE_H__

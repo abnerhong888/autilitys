@@ -2,7 +2,7 @@
 #define __AUTILITY_TIMER_H__
 #include "au_common.h"
 
-#ifdef USING_AU_TIMER
+#ifdef USE_AU_TIMER
 
 #include <chrono>
 #include <ctime>
@@ -154,6 +154,6 @@ namespace au {
 	}
 }
 
-#endif //USING_AU_TIMER
+#endif //USE_AU_TIMER
 
 #endif //__AUTILITY_TIMER_H__

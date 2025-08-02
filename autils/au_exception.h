@@ -3,7 +3,7 @@
 
 #include "au_common.h"
 
-#ifdef USING_AU_EXCEPTION
+#ifdef USE_AU_EXCEPTION
 
 #include <string>
 #include <stdexcept>
@@ -159,6 +159,6 @@ namespace au{
 	}
 }
 
-#endif //USING_AU_EXCEPTION
+#endif //USE_AU_EXCEPTION
 
 #endif //__AUTILITY_EXCEPTION_H__

@@ -3,7 +3,7 @@
 
 #include "au_common.h"
 
-#ifdef USING_AU_INI
+#ifdef USE_AU_INI
 
 #include <fstream>
 #include <string>
@@ -374,5 +374,5 @@ namespace au {
 }
 
 
-#endif //USING_AU_INI
+#endif //USE_AU_INI
 #endif //__AUTILITY_INI_H__

@@ -4,10 +4,10 @@
 
 
 
-#ifdef USING_AU_COLOR
+#ifdef USE_AU_COLOR
 
-#ifndef USING_AU_TYPES
-#error Must define USING_AU_TYPES if using color define.
+#ifndef USE_AU_TYPES
+#error Must define USE_AU_TYPES if using color define.
 #endif
 
 #include "au_types.h"
@@ -566,6 +566,6 @@ namespace au
 	}
 }
 
-#endif //USING_AU_COLOR
+#endif //USE_AU_COLOR
 
 #endif //__AUTILITY_COLORS_H__

@@ -2,7 +2,7 @@
 #define __AUTILITY_STRING_CVT_H__
 #include "au_common.h"
 
-#ifdef USING_AU_STRING_CVT
+#ifdef USE_AU_STRING_CVT
 
 #include <string>
 #include <algorithm>
@@ -114,7 +114,7 @@ namespace au {
 	}
 }
 
-#endif //USING_AU_STRING_CVT
+#endif //USE_AU_STRING_CVT
 
 #endif //__AUTILITY_STRING_CVT_H__
 

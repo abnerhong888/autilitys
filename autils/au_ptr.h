@@ -3,7 +3,7 @@
 
 #include "au_common.h"
 
-#ifdef USING_AU_PTR
+#ifdef USE_AU_PTR
 
 #include <memory>
 
@@ -116,7 +116,7 @@ namespace au {
 	}
 }
 
-#endif //USING_AU_PTR
+#endif //USE_AU_PTR
 
 #endif //__AUTILITY_PTR_H__
 

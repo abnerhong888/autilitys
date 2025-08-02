@@ -2,7 +2,7 @@
 #define __AUTILITY_AUTHREAD_H__
 #include "au_common.h"
 
-#ifdef USING_AU_THREAD
+#ifdef USE_AU_THREAD
 
 #include <thread>
 #include <chrono>
@@ -625,6 +625,6 @@ namespace au {
 
 
 
-#endif // USING_AU_THREAD
+#endif // USE_AU_THREAD
 
 #endif // __AUTILITY_AUTHREAD_H__

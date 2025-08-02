@@ -3,7 +3,7 @@
 
 #include "au_common.h"
 
-#ifdef USING_AU_LOGGER
+#ifdef USE_AU_LOGGER
 
 #include <iostream>
 #include <string>
@@ -20,15 +20,15 @@
 #include "windows.h"
 #endif
 
-#ifdef USING_AU_EXCEPTION
+#ifdef USE_AU_EXCEPTION
 #include "au_exception.h"
 #endif
 
-#ifndef USING_AU_FILE_SYSTEM
-#error Must define USING_AU_TYPES if using logger define.
+#ifndef USE_AU_FILE_SYSTEM
+#error Must define USE_AU_TYPES if using logger define.
 #endif
 
-#ifdef USING_AU_THREAD
+#ifdef USE_AU_THREAD
 #include "au_thread.h"
 #endif
 
@@ -305,7 +305,7 @@ namespace au {
 			bool is_logger_thread = false;
 		}; // class logger
 
-#ifdef USING_AU_THREAD
+#ifdef USE_AU_THREAD
 
 		enum class eMode : int
 		{
@@ -395,7 +395,7 @@ namespace au {
 
 		template<typename... Args>
 		AU_INLINE void logger::Write(eLevel lvl, std::string&& fmt, Args &&...args) {
-#ifdef USING_AU_THREAD
+#ifdef USE_AU_THREAD
 			if (is_logger_thread) {
 				static_cast<logger_thread*>(this)->Write(lvl, std::move(fmt), std::forward<Args>(args)...);
 			}
@@ -410,7 +410,7 @@ namespace au {
 
 		template<typename... Args>
 		AU_INLINE void logger::Write(eLevel lvl, std::string& fmt, Args &&...args) {
-#ifdef USING_AU_THREAD
+#ifdef USE_AU_THREAD
 			if (is_logger_thread) {
 				static_cast<logger_thread*>(this)->Write(lvl, fmt, std::forward<Args>(args)...);
 			}
@@ -516,6 +516,6 @@ namespace au {
 	}
 }
 
-#endif // USING_AU_LOGGER
+#endif // USE_AU_LOGGER
 
 #endif //__AUTILITY_LOGGER_H__

@@ -3,10 +3,10 @@
 
 #include "au_common.h"
 
-#ifdef USING_AU_MATH
+#ifdef USE_AU_MATH
 
-#ifndef USING_AU_TYPES
-#error Must define USING_AU_TYPES if using math define.
+#ifndef USE_AU_TYPES
+#error Must define USE_AU_TYPES if using math define.
 #endif
 
 #include "au_types.h"
@@ -287,6 +287,6 @@ namespace au {
 }
 
 
-#endif //USING_AU_MATH
+#endif //USE_AU_MATH
 
 #endif // __AUTILITY_MATH_H__

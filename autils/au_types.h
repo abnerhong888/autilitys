@@ -3,9 +3,9 @@
 
 #include "au_common.h"
 
-#ifdef USING_AU_TYPES
+#ifdef USE_AU_TYPES
 
-#ifdef USING_AU_EXCEPTION
+#ifdef USE_AU_EXCEPTION
 #include "au_exception.h"
 #endif
 
@@ -633,6 +633,6 @@ typedef NAME(_type, _n)
 	}// namespace types	
 }//namespace au
 
-#endif // USING_AU_TYPES
+#endif // USE_AU_TYPES
 
 #endif // __AUTILITY_TYPES_H__
