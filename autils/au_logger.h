@@ -112,7 +112,7 @@ namespace au {
 
 			};
 
-			static std::string log_folder = ".\\Log\\";
+			static std::string log_folder = "./Log/";
 			static bool is_apply_to_log_console = false;
 			static bool is_console_enable = true;
 

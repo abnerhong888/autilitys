@@ -2,7 +2,7 @@
     "version": 3,
     "configurePresets": [
         {
-            "name": "default",
+            "name": "mingw",
             "hidden": false,
             "generator": "MinGW Makefiles",
             "description": "Use MinGW Makefiles generator by default",
