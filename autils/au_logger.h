@@ -58,7 +58,9 @@ namespace au {
 			{ "[  INFO   ] ", "[  ERROR  ] ", "[ WARNING ] ", "[  DEBUG  ] ", "" };
 
 			static const std::regex reformat(
-				"\\{d\\}|\\{d[1-9]\\}|\\{f\\}|\\{f[1-9]\\}|\\{0x\\}|\\{c\\}|\\{s\\}|\\{\\}",
+				"\\{d\\}|\\{d[1-9]\\}|\\{f\\}|\\{f[1-9]\\}| \
+				\\{0x\\}|\\{0x[1-9]\\}|\\{0x1[0-6]\\}| \
+				\\{c\\}|\\{s\\}|\\{\\}",
 				std::regex_constants::icase
 			);
 
@@ -69,7 +71,9 @@ namespace au {
 				{typeid(short int).name(),			"%d"},
 				{typeid(unsigned short int).name(), "%d"},
 				{typeid(long).name(),				"%d"},
+				{typeid(unsigned long).name(),		"%d"},
 				{typeid(long long).name(),			"%d"},
+				{typeid(unsigned long long).name(),	"%d"},
 				{typeid(float).name(),				"%f"},
 				{typeid(double).name(),				"%f"},
 				{typeid(char).name(),				"%c"},
@@ -92,19 +96,23 @@ namespace au {
 				{typeid(std::chrono::duration<double, std::chrono::minutes::period>).name(),		"%f min"},
 				{typeid(std::chrono::duration<double, std::chrono::hours::period>).name(),			"%f hr"},
 				
-				{"{d}", "%d"},{"{d1}", "%1d"},{"{d2}", "%2d"},{"{d3}", "%3d"},{"{d4}", "%4d"},{"{d5}", "%5d"},
-				{"{d6}", "%6d"},{"{d7}", "%7d"},{"{d8}", "%8d"},{"{d9}", "%9d"},
+				{"{d}", "%d"}, {"{d1}", "%1d"}, {"{d2}", "%2d"}, {"{d3}", "%3d"}, {"{d4}", "%4d"}, {"{d5}", "%5d"},
+				{"{d6}", "%6d"}, {"{d7}", "%7d"}, {"{d8}", "%8d"}, {"{d9}", "%9d"},
 
-				{"{f}", "%f"},{"{f1}", "%.1f"},{"{f2}", "%.2f"},{"{f3}", "%.3f"},{"{f4}", "%.4f"},{"{f5}", "%.5f"},
-				{"{f6}", "%.6f"},{"{f7}", "%.7f"},{"{f8}", "%.8f"},{"{f9}", "%.9f"},
+				{"{f}", "%f"}, {"{f1}", "%.1f"}, {"{f2}", "%.2f"}, {"{f3}", "%.3f"}, {"{f4}", "%.4f"}, {"{f5}", "%.5f"},
+				{"{f6}", "%.6f"}, {"{f7}", "%.7f"}, {"{f8}", "%.8f"}, {"{f9}", "%.9f"},
 
-				{"{0x}", "0x%x"},
+				{"{0x}", "0x%x"}, {"{0x1}", "0x%01x"}, {"{0x2}", "0x%02x"}, {"{0x3}", "0x%03x"}, {"{0x4}", "0x%04x"}, 
+				{"{0x5}", "0x%05x"}, {"{0x6}", "0x%06x"}, {"{0x7}", "0x%07x"}, {"{0x8}", "0x%08x"}, {"{0x9}", "0x%09x"}, 
+				{"{0x10}", "0x%010x"}, {"{0x11}", "0x%011x"}, {"{0x12}", "0x%012x"}, {"{0x13}", "0x%013x"}, 
+				{"{0x14}", "0x%014x"}, {"{0x15}", "0x%015x"}, {"{0x16}", "0x%016x"},
+				
 				{"{c}", "%c"},
 				{"{s}", "%s"},
 
 			};
 
-#define LOG_FOLDER  ".\\Log\\"
+			static std::string log_folder = ".\\Log\\";
 			static bool is_apply_to_log_console = false;
 			static bool is_console_enable = true;
 
@@ -206,13 +214,18 @@ namespace au {
 			}
 		}
 
+
+		void set_log_folder(std::string _folder_path) {
+			global::log_folder = _folder_path;
+		}
+		
 		class logger_thread;
 
 		class AU_API logger
 		{
 		public:
 			logger(std::string&& _name, int delete_file_over_day = -1){
-				_initialize(std::move(_name), LOG_FOLDER);
+				_initialize(std::move(_name), global::log_folder);
 				DeleteLogs(delete_file_over_day);
 			}
 			logger(std::string&& _name, std::string _folder_path, int delete_file_over_day = -1){
@@ -250,7 +263,7 @@ namespace au {
 		protected:
 			template<typename Ty>
 			logger(std::string&& _name, Ty *v, int delete_file_over_day = -1) {
-				_initialize(std::move(_name), LOG_FOLDER);
+				_initialize(std::move(_name), global::log_folder);
 				is_logger_thread = std::is_same<logger_thread, Ty>::value;
 				DeleteLogs(delete_file_over_day);
 			}
