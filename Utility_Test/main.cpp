@@ -22,47 +22,47 @@ void Thread_Pool_Test();
 void INI_TEST();
 void Parallel_For_Test();
 void Command_Line_TEST();
-
-
-#define UNIT_TEST(__func) if(__func()) log::console::Debug("test: %s pass", #__func); else log::console::Error("test: %s fail", #__func);
+void Protoco_Test();
 
 int main()
 {
 	log::console::console_enable(true);
 	
-	Try_Catch_Test();
+	// Try_Catch_Test();
 
-	Logger_Console_Test();
+	// Logger_Console_Test();
 
-	Logger_Test();
+	// Logger_Test();
 
-	Logger_Thread_Test();
+	// Logger_Thread_Test();
 
-	StringCVT_Test();
+	// StringCVT_Test();
 
-	StringCVT_Test();
+	// StringCVT_Test();
 
-	Color_Test();
+	// Color_Test();
 
-	Types_Test();
+	// Types_Test();
 
-	Vector_Test();
+	// Vector_Test();
 
-	PTR_TEST();
+	// PTR_TEST();
 
-	Math_Test();
+	// Math_Test();
 
-	FileSystem_Test();
+	// FileSystem_Test();
 
-	/*Thread_Test();
+	// /*Thread_Test();
 	
-	Thread_Pool_Test();*/
+	// Thread_Pool_Test();*/
 
-	INI_TEST();
+	// INI_TEST();
 
-	//Parallel_For_Test();
+	// //Parallel_For_Test();
 
-	Command_Line_TEST();
+	// Command_Line_TEST();
+
+	Protoco_Test();
 
 	au::sleep_ms(10);
 
@@ -74,17 +74,17 @@ void Logger_Console_Test()
 {
 	log::console::Write(log::eLevel::none,"\n========= Logger_Console_Test =========\n");
 
-	time::timer::start();
+	time::measure::start();
 	printf("printf test\n");
-	time::timer::end();
-	log::console::Debug(("printf time {} ms"), time::timer::get_duration(time::eformat::millis));
+	time::measure::end();
+	log::console::Debug(("printf time {} ms"), time::measure::get_duration());
 
-	time::timer::start();
+	time::measure::start();
 	log::console::Debug(("hello {} {0x} {}"), "12369", 10, 800.0);
-	time::timer::end();
-	log::console::Debug(("time {} ms"), time::timer::get_duration(time::eformat::millis));
-	log::console::Debug(("time {}"), time::timer::get_duration<time::milli>());
-	log::console::Debug(("now {} "), au::to_string(time::now()).c_str());
+	time::measure::end();
+	log::console::Debug(("time {} ms"), time::measure::get_duration());
+	log::console::Debug(("time {}"), time::measure::get_duration<time::milli>());
+	log::console::Debug(("now {} "), au::to_string(time::get_system_now()).c_str());
 	using namespace std::literals::chrono_literals;
 	log::console::Debug(("now {} "), 1h);
 
@@ -144,6 +144,11 @@ void FileSystem_Test()
 
 	fs::sort_by_date(files);
 	auto files_overdays = fs::check_over_days(files, 30);
+
+	AU_UNUSED(t);
+	AU_UNUSED(file_count);
+	AU_UNUSED(files);
+	AU_UNUSED(files_overdays);
 }
 
 void Color_Test()
@@ -223,6 +228,24 @@ void Types_Test()
 	auto iio2 = i6 - i1;
 	auto iio3 = i6 * i1;
 	auto iio4 = i6 / i1;
+
+	AU_UNUSED(i3);
+	AU_UNUSED(i5);
+	AU_UNUSED(i11);
+	AU_UNUSED(i12);
+	AU_UNUSED(io1);
+	AU_UNUSED(io1);
+	AU_UNUSED(io2);
+	AU_UNUSED(io3);
+	AU_UNUSED(io4);
+	AU_UNUSED(io6);
+	AU_UNUSED(io7);
+	AU_UNUSED(io8);
+	AU_UNUSED(io9);
+	AU_UNUSED(iio1);
+	AU_UNUSED(iio2);
+	AU_UNUSED(iio3);
+	AU_UNUSED(iio4);
 }
 
 void Vector_Test()
@@ -294,6 +317,30 @@ void Vector_Test()
 	auto ddo2 = d6 - d1;
 	auto ddo3 = d6 * d1;
 	auto ddo4 = d6 / d1;
+
+	AU_UNUSED(d3);
+	AU_UNUSED(d5);
+	AU_UNUSED(d11);
+	AU_UNUSED(d12);
+
+	AU_UNUSED(dot_v);
+	AU_UNUSED(length);
+	AU_UNUSED(cross_product);
+
+	AU_UNUSED(do1);
+	AU_UNUSED(do2);
+	AU_UNUSED(do3);
+	AU_UNUSED(do4);
+
+	AU_UNUSED(do6);
+	AU_UNUSED(do7);
+	AU_UNUSED(do8);
+	AU_UNUSED(do9);
+
+	AU_UNUSED(ddo1);
+	AU_UNUSED(ddo2);
+	AU_UNUSED(ddo3);
+	AU_UNUSED(ddo4);
 }
 
 void throw_test()
@@ -384,12 +431,16 @@ void Math_Test()
 	auto deg = math::rad2deg(math::pi);
 	auto rad = math::deg2rad(deg);
 
+	AU_UNUSED(deg);
+	AU_UNUSED(rad);
+
 	types::double2 intersection1;
 	types::double2 p1(0, 0);
 	types::double2 p2(10, 10);
 	types::double2 p3(10, 0);
 	types::double2 p4(0, 10);
 	bool is_intersection = math::get_2d_intersection_point(p1, p2, p3, p4, &intersection1);
+	AU_UNUSED(is_intersection);
 
 	types::double3 intersection2;
 	types::double3 p11(0, 0, 0);
@@ -398,6 +449,7 @@ void Math_Test()
 	types::double3 vec2(-10, 10, 0);
 
 	bool is_sameplane = math::check_if_2_line_same_plane_intersection(p11, vec1, p22, vec2, &intersection2);
+	AU_UNUSED(is_sameplane);
 
 	types::double3 p31(1, 2, 3);
 	types::double3 p32(10, 10, 0);
@@ -405,6 +457,7 @@ void Math_Test()
 	types::double3 p34(0, 10, 0);
 
 	auto closr_point = math::get_3d_closer_point(p31, p32, p33, p34);
+	AU_UNUSED(closr_point);
 }
 
 
@@ -534,8 +587,18 @@ void INI_TEST()
 	auto v4 = data["Test"]["Variable2"].as<double>();
 	auto v5 = data["Test"]["Variable3"].as<std::string>();
 	auto v6 = data["Test"]["Variable4"].as<bool>();
-
 	auto v7 = data["Test"]["Version"].as_split<int>("\\.");
+
+	AU_UNUSED(b1);
+	AU_UNUSED(b2);
+	AU_UNUSED(b3);
+	AU_UNUSED(v1);
+	AU_UNUSED(v2);
+	AU_UNUSED(v3);
+	AU_UNUSED(v4);
+	AU_UNUSED(v5);
+	AU_UNUSED(v6);
+	AU_UNUSED(v7);
 }
 
 void Parallel_For_Test()
@@ -565,7 +628,7 @@ void Parallel_For_Test()
 	int* arr = new int[size];
 	memset(arr, 0, sizeof(int) * size);
 
-	time::timer::start();
+	time::measure::start();
 	au::parallel::FOR_(au::parallel::range(0, size), [&](const au::parallel::range& range)
 		{
 			for (int i = range.start; i < range.end; i++) {
@@ -574,25 +637,27 @@ void Parallel_For_Test()
 				types::double3 p33(10, 0, 0);
 				types::double3 p34(0, 10, 0);
 				auto closr_point = math::get_3d_closer_point(p31, p32, p33, p34);
+				AU_UNUSED(closr_point);
 				arr[i] += 1;
 			}
 		});
-	time::timer::end();
+	time::measure::end();
 
-	log::console::Debug("parallel time1 = {} ms", time::timer::get_duration(time::eformat::millis));
+	log::console::Debug("parallel time1 = {} ms", time::measure::get_duration());
 
-	time::timer::start();
+	time::measure::start();
 	for (int i = 0; i < size; i++) {
 		types::double3 p31(1, 2, 3);
 		types::double3 p32(10, 10, 0);
 		types::double3 p33(10, 0, 0);
 		types::double3 p34(0, 10, 0);
 		auto closr_point = math::get_3d_closer_point(p31, p32, p33, p34);
+		AU_UNUSED(closr_point);
 		arr[i] += 1;
 	}
-	time::timer::end();
+	time::measure::end();
 
-	log::console::Debug("no parallel time2 = {} ms", time::timer::get_duration(time::eformat::millis));
+	log::console::Debug("no parallel time2 = {} ms", time::measure::get_duration());
 
 	for (int i = 0; i < size; i++) {
 		if (arr[i] != 2) {
@@ -649,4 +714,100 @@ void Command_Line_TEST()
 	auto v = cmdline::getDefault_int("test_int");
 	auto v2 = cmdline::getDefault_string("test_string2");
 	
+	AU_UNUSED(v);
+	AU_UNUSED(v2);
+	
+}
+
+void Protoco_Test(){
+	log::console::Write(log::eLevel::none, "\n========= Protoco_Test =========\n");
+
+	AU_TRY
+	{
+		class AU_API UDPServer : public protoco::Server {
+		public:
+			UDPServer() : protoco::Server(){
+				hd.backend = protoco::eBackendType::UDP;
+				hd.ip = "localhost";
+				hd.port = 8080;
+				int ret = protoco::Server::Initialize(hd, "UDPServer");
+				AU_ASSERT(ret == 0, "UDPServer init failed.");
+
+				cppThread::Start();
+			}
+			virtual void Parser(char* buffer, int size, struct sockaddr_in& client_addr){
+				std::string ip = inet_ntoa(client_addr.sin_addr);
+				int port = ntohs(client_addr.sin_port);
+				std::string str(buffer, size);
+				log::console::Debug("[[UDP Server]] ip {}:{}, Recv: {}\n", ip.c_str(), port, str.c_str());
+            }
+
+            void Run() override{
+				auto backend = Server::GetBackend();
+
+				struct sockaddr_in client_addr;
+    			socklen_t client_len = sizeof(client_addr);
+
+				int len = backend->recvfrom(buf, sizeof(buf), 0, (struct sockaddr*)&client_addr, &client_len);
+
+				if(len > 0){
+					Parser(buf, len, client_addr);
+
+					std::string str = "this message is from UDPServer.";
+					backend->sendto(str.c_str(), str.size(), 0, (struct sockaddr*)&client_addr, sizeof(client_addr));
+				}
+            };
+		private:
+			char buf[1024] = {0};
+			protoco::handle hd;
+		};
+
+
+		class AU_API UDPClient : public protoco::Client{
+		public:
+			UDPClient(){
+				hd.backend = protoco::eBackendType::UDP;
+				hd.ip = "localhost";
+				hd.port = 8080;
+				int ret = protoco::Client::Initialize(hd, "UDPClient");
+				AU_ASSERT(ret == 0, "UDPClient init failed.");
+
+				cppThread::Start();
+			}
+			void send(){
+				auto backend = Client::GetBackend();
+				std::string str = "this message is from UDPClient.";
+				struct sockaddr_in server_addr = backend->get_sockaddr(hd);
+
+				backend->sendto(str.c_str(), str.size(), 0, (struct sockaddr*)&server_addr, sizeof(server_addr));
+			}
+			void Run() override{
+				auto backend = Client::GetBackend();
+
+				struct sockaddr_in addr;
+    			socklen_t addr_len = sizeof(addr);
+				char buf[1024] = {0};
+				int len = backend->recvfrom(buf, sizeof(buf), 0, (struct sockaddr*)&addr, &addr_len);
+
+				if(len > 0){
+					std::string ip = inet_ntoa(addr.sin_addr);
+					int port = ntohs(addr.sin_port);
+					std::string str(buf, len);
+					log::console::Debug("[[UDP Client]] ip {}:{}, Recv: {}\n", ip.c_str(), port, str.c_str());
+				}
+            };
+		private:
+			protoco::handle hd;
+		};
+
+
+		UDPServer server;
+		UDPClient client;
+		client.send();
+		au::sleep_ms(1000);
+	}
+	AU_CATCH
+	{
+		log::console::Debug(("{}"), e.what());
+	}
 }

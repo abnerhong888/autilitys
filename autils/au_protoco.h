@@ -64,7 +64,7 @@ namespace au {
                     return -1;
                 }
 
-                struct sockaddr_in get_sockaddr(protoco::handle handle) { 
+                AU_INLINE struct sockaddr_in get_sockaddr(protoco::handle handle) { 
                     struct sockaddr_in addr;
                     memset(&addr, 0, sizeof(addr));
                     addr.sin_family = AF_INET;
@@ -73,7 +73,7 @@ namespace au {
                     inet_pton(addr.sin_family, handle.ip.c_str(), &addr.sin_addr);
                     return addr;
                 };
-                struct sockaddr_in get_sockaddr(std::string ip, int port) { 
+                AU_INLINE struct sockaddr_in get_sockaddr(std::string ip, int port) { 
                     struct sockaddr_in addr;
                     memset(&addr, 0, sizeof(addr));
                     addr.sin_family = AF_INET;
@@ -96,7 +96,7 @@ namespace au {
                     close(sockfd);
                 }
 
-                int init(std::string _host, int _port){
+                AU_INLINE int init(std::string _host, int _port){
                     host = _host;
                     port = _port;
                     sockfd = socket(AF_INET, SOCK_DGRAM, 0);
@@ -107,14 +107,14 @@ namespace au {
                 }
 
 
-                int bind() override{
+                AU_INLINE int bind() override{
                     struct sockaddr_in server_addr = get_sockaddr(host, port);
                     if(::bind(sockfd, (struct sockaddr*)&server_addr, sizeof(server_addr)) < 0){
                         return -1;
                     }
                     return 0;
                 }
-                int recvfrom(void *__restrict __buf, size_t __n, int __flags,
+                AU_INLINE int recvfrom(void *__restrict __buf, size_t __n, int __flags,
 	                            __SOCKADDR_ARG __addr, socklen_t *__restrict __addr_len) {
                     struct timeval tv;
                     tv.tv_sec = 0;
@@ -122,7 +122,7 @@ namespace au {
                     setsockopt(sockfd, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(tv));
                     return ::recvfrom(sockfd, __buf, __n, __flags, __addr, __addr_len);
                 };
-                int sendto(const void *__buf, size_t __n,
+                AU_INLINE int sendto(const void *__buf, size_t __n,
 		                        int __flags, __CONST_SOCKADDR_ARG __addr, socklen_t __addr_len){
                     return ::sendto(sockfd, __buf, __n, __flags, __addr, __addr_len);
                 };
@@ -152,7 +152,7 @@ namespace au {
                 thread::cppThread::Terminate();
             }
 
-            int Initialize(handle _handle, std::string _server_name){
+            AU_INLINE int Initialize(handle _handle, std::string _server_name){
                 if(is_initialized)
                    return 0; 
 
@@ -166,12 +166,11 @@ namespace au {
                 }
 
                 cppThread::Initialize(server_name);
-                cppThread::Start();
                 is_initialized = true;
 
                 return 0;
             }
-            aptr::ptr<backend::IBackend> GetBackend(){
+            AU_INLINE aptr::ptr<backend::IBackend> GetBackend(){
                 return backend;
             }
         private:
@@ -194,7 +193,7 @@ namespace au {
                 
             }
 
-            int Initialize(handle _handle, std::string _client_name){
+            AU_INLINE int Initialize(handle _handle, std::string _client_name){
                 if(is_initialized)
                    return 0; 
 
@@ -206,11 +205,10 @@ namespace au {
                 }
 
                 cppThread::Initialize(client_name);
-                cppThread::Start();
                 is_initialized = true;
                 return 0;
             }
-            aptr::ptr<backend::IBackend> GetBackend(){
+            AU_INLINE aptr::ptr<backend::IBackend> GetBackend(){
                 return backend;
             }
 
