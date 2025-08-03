@@ -34,33 +34,31 @@ int main()
 
 	// Logger_Test();
 
-	// Logger_Thread_Test();
+	Logger_Thread_Test();
 
-	// StringCVT_Test();
+	StringCVT_Test();
 
-	// StringCVT_Test();
+	Color_Test();
 
-	// Color_Test();
+	Types_Test();
 
-	// Types_Test();
+	Vector_Test();
 
-	// Vector_Test();
+	PTR_TEST();
 
-	// PTR_TEST();
+	Math_Test();
 
-	// Math_Test();
+	FileSystem_Test();
 
-	// FileSystem_Test();
-
-	// /*Thread_Test();
+	Thread_Test();
 	
-	// Thread_Pool_Test();*/
+	Thread_Pool_Test();
 
-	// INI_TEST();
+	INI_TEST();
 
-	// //Parallel_For_Test();
+	Parallel_For_Test();
 
-	// Command_Line_TEST();
+	Command_Line_TEST();
 
 	Protoco_Test();
 
@@ -122,8 +120,6 @@ void Logger_Thread_Test()
 
 	for(int i=0;i<50;i++)
 		log::logger_map::get("logThread")->Write(au::log::eLevel::warn, "test {} ", i);
-	
-	
 }
 
 void StringCVT_Test()
@@ -497,10 +493,12 @@ void Thread_Test()
 	};
 
 	test_thread test_thread1;
-	printf("thread name: %s\n", test_thread1.ThreadName().c_str());
+	printf("thread name: %s\n", test_thread1.GetThreadName().c_str());
 	au::sleep_ms(1000);
 	test_thread1.Terminate();
 	t->Terminate();
+
+	delete t;
 }
 
 void Thread_Pool_Test()
@@ -726,11 +724,11 @@ void Protoco_Test(){
 	{
 		class AU_API UDPServer : public protoco::Server {
 		public:
-			UDPServer() : protoco::Server(){
+			UDPServer() : protoco::Server("UDPServer"){
 				hd.backend = protoco::eBackendType::UDP;
 				hd.ip = "localhost";
 				hd.port = 8080;
-				int ret = protoco::Server::Initialize(hd, "UDPServer");
+				int ret = protoco::Server::Initialize(hd);
 				AU_ASSERT(ret == 0, "UDPServer init failed.");
 
 				cppThread::Start();
@@ -765,11 +763,11 @@ void Protoco_Test(){
 
 		class AU_API UDPClient : public protoco::Client{
 		public:
-			UDPClient(){
+			UDPClient(): protoco::Client("UDPClient"){
 				hd.backend = protoco::eBackendType::UDP;
 				hd.ip = "localhost";
 				hd.port = 8080;
-				int ret = protoco::Client::Initialize(hd, "UDPClient");
+				int ret = protoco::Client::Initialize(hd);
 				AU_ASSERT(ret == 0, "UDPClient init failed.");
 
 				cppThread::Start();

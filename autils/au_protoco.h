@@ -142,22 +142,22 @@ namespace au {
     namespace protoco{
         class AU_API Server: public thread::cppThread{
         public:
-            Server(): cppThread(){
-
+            Server(std::string _server_name): cppThread(_server_name){
+                server_name = _server_name;
             }
-            Server(handle _handle, std::string _server_name): cppThread(){
-                Server::Initialize(_handle, _server_name);
+            Server(handle _handle, std::string _server_name): cppThread(_server_name){
+                server_name = _server_name;
+                Server::Initialize(_handle);
             }
             ~Server(){
                 thread::cppThread::Terminate();
             }
 
-            AU_INLINE int Initialize(handle _handle, std::string _server_name){
+            AU_INLINE int Initialize(handle _handle){
                 if(is_initialized)
                    return 0; 
 
                 hd = _handle;
-                server_name = _server_name;
 
                 if(hd.backend == eBackendType::UDP){
                     backend = aptr::make_ptr(new backend::UDPBackend(hd.ip, hd.port));
@@ -165,7 +165,6 @@ namespace au {
                     AU_ASSERT(ret == 0, "UDPBackend bind failed.");
                 }
 
-                cppThread::Initialize(server_name);
                 is_initialized = true;
 
                 return 0;
@@ -183,28 +182,26 @@ namespace au {
 
         class AU_API Client : public thread::cppThread{
         public:
-            Client(): cppThread(){
-                
+            Client(std::string _client_name): cppThread(_client_name){
+                client_name = _client_name;
             }
-            Client(handle _handle, std::string _client_name): cppThread(){
-                Client::Initialize(_handle, _client_name);
+            Client(handle _handle, std::string _client_name): cppThread(_client_name){
+                client_name = _client_name;
+                Client::Initialize(_handle);
             }
             ~Client(){
-                
+                thread::cppThread::Terminate();
             }
 
-            AU_INLINE int Initialize(handle _handle, std::string _client_name){
+            AU_INLINE int Initialize(handle _handle){
                 if(is_initialized)
                    return 0; 
 
                 hd = _handle;
-                client_name = _client_name;
                 
                 if(hd.backend == eBackendType::UDP){
                     backend = aptr::make_ptr(new backend::UDPBackend(hd.ip, hd.port));
                 }
-
-                cppThread::Initialize(client_name);
                 is_initialized = true;
                 return 0;
             }

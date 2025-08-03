@@ -27,9 +27,6 @@ namespace au {
 		LOWER,
 	};
 
-#if defined(_MSC_VER) && defined(_WIN32)
-	void WIN32_Thread_Setting(HWND thread_handle, eThreadPriority priority, std::string threadName, int threadID);
-#endif
 
 	// Interface Thread Run
 	class AU_API IThreadRun
@@ -43,7 +40,7 @@ namespace au {
 	{
 	public:
 		IThread() = default;
-		~IThread() = default;
+		virtual ~IThread() = default;
 		virtual bool AddJob(thread_fptr fptr) = 0;
 		virtual bool DeleteJob(thread_fptr FuncPtr) = 0;
 		virtual void Start() = 0;
@@ -52,17 +49,18 @@ namespace au {
 		virtual bool isWorking() = 0;
 		virtual void EnableOneTimeJob() = 0;
 		virtual void DisableOneTimeJob() = 0;
-		virtual std::string ThreadName() = 0;
-		virtual int ThreadID() = 0;
+		virtual std::string GetThreadName() = 0;
+		virtual int GetThreadID() = 0;
 		virtual void ThreadLock() = 0;
 		virtual void ThreadUnLock() = 0;
 
 		bool paused = false;
 		bool terminated = false;
-		bool stopped = true;
+		bool stopped = false;
 		bool onetime_job = false;
 		bool is_working = false;
 		std::string m_thread_name;
+		bool is_initialized = false;
 	protected:
 		std::vector<thread_fptr> func_ptrs;
 	private:
@@ -74,11 +72,11 @@ namespace au {
 	class AU_API cppThread : public IThread
 	{
 	public:
-		cppThread() {
-
+		cppThread(){
+			Initialize("defaultThread");
 		}
-
 		~cppThread(){
+			//printf("thread terminate = [%s]\n", m_thread_name.c_str());
 			ThreadUnLock();
 			Terminate();
 		}
@@ -101,8 +99,8 @@ namespace au {
 		bool isWorking() override;
 		void EnableOneTimeJob() override;
 		void DisableOneTimeJob() override;
-		std::string ThreadName() override;
-		int ThreadID() override;
+		std::string GetThreadName() override;
+		int GetThreadID() override;
 		void ThreadLock() override;
 		void ThreadUnLock() override;
 
@@ -181,6 +179,11 @@ namespace au {
 	AU_INLINE void cppThread::Initialize( std::string _thread_name, eThreadPriority _priority, 
 		thread_static_entry_fptr _static_thread_entry, void* _user_data)
 	{
+		if(is_initialized)
+			return;
+
+		m_thread_name = _thread_name;
+
 		if (m_thread == nullptr)
 		{
 			m_thread = new std::thread(
@@ -194,6 +197,8 @@ namespace au {
 		m_thread->detach();
 
 		while (!is_thread_ready) { au::sleep_ms(1); }
+
+		is_initialized = true;
 
 	}
 
@@ -269,14 +274,11 @@ namespace au {
 	{
 		onetime_job = false;
 	}
-	AU_INLINE std::string cppThread::ThreadName()
+	AU_INLINE std::string cppThread::GetThreadName()
 	{
-		std::ostringstream ss;
-		ss << m_threadId;
-		m_thread_name = ss.str();
 		return m_thread_name;
 	}
-	AU_INLINE int cppThread::ThreadID()
+	AU_INLINE int cppThread::GetThreadID()
 	{
 		std::ostringstream ss;
 		ss << m_threadId;
@@ -365,7 +367,7 @@ namespace au {
 
 				Immediate() :
 					cppThread("auThreadPool_Immediate", eThreadPriority::SAME,
-						Immediate::StaticThreadEntry,this)
+						Immediate::StaticThreadEntry, this)
 				{
 					Start();
 				}

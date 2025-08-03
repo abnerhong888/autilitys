@@ -233,7 +233,7 @@ namespace au {
 				_initialize(std::move(_name), _folder_path);
 				DeleteLogs(delete_file_over_day);
 			}
-			~logger() = default;
+			virtual ~logger() = default;
 
 			template<typename... Args>
 			void Write(eLevel lvl, std::string&& fmt, Args &&...args);
