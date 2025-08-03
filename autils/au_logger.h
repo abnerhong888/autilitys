@@ -173,7 +173,7 @@ namespace au {
 			{
 				std::string _fmt = fmt;
 				std::smatch sm;
-				int count = 0;
+				size_t count = 0;
 				while (std::regex_search(_fmt, sm, global::reformat))
 				{
 					if (sm[0] == "{}")
@@ -233,7 +233,7 @@ namespace au {
 				_initialize(std::move(_name), _folder_path);
 				DeleteLogs(delete_file_over_day);
 			}
-			virtual ~logger() {}
+			~logger() = default;
 
 			template<typename... Args>
 			void Write(eLevel lvl, std::string&& fmt, Args &&...args);
@@ -335,33 +335,31 @@ namespace au {
 		{
 		public:
 			logger_thread(std::string&& _name, eMode _mode, int delete_file_over_day = -1, int _queue_size = 50) :
-				queue_size(_queue_size), mode(_mode), 
-				logger(std::move(_name), this, delete_file_over_day), cppThread("logger_thread")
+				logger(std::move(_name), this, delete_file_over_day), cppThread("logger_thread"), queue_size(_queue_size), mode(_mode)
 			{
 				Start();
 			}
 
 			logger_thread(std::string&& _name, std::string _folder_path, eMode _mode, int delete_file_over_day = -1, int _queue_size = 50):
-				queue_size(_queue_size), mode(_mode), 
-				logger(std::move(_name), _folder_path, this, delete_file_over_day), cppThread("logger_thread")
+				logger(std::move(_name), _folder_path, this, delete_file_over_day), cppThread("logger_thread"), queue_size(_queue_size), mode(_mode)
 			{
 				Start();
 			}
 
-			~logger_thread() override {
+			~logger_thread() {
 
 				Flush();
 				while (true) {
-					this->ThreadLock();
+					thread::cppThread::ThreadLock();
 					if (!force_flush)
 						break;
-					this->ThreadUnLock();
+					thread::cppThread::ThreadUnLock();
 
 					au::sleep_ms(1); 
 				}
-				this->ThreadUnLock();
+				thread::cppThread::ThreadUnLock();
 
-				this->Terminate();
+				thread::cppThread::Terminate();
 			}
 
 			template<typename... Args>
@@ -398,7 +396,7 @@ namespace au {
 					force_flush = false;
 				}
 
-				if (string_queue.size() > queue_size) {
+				if (string_queue.size() > (size_t)queue_size) {
 					_Write_File(string_queue.front().c_str());
 					string_queue.pop();
 				}
@@ -538,8 +536,8 @@ namespace au {
 		private:
 		}; // class console
 
-	}
-}
+	} // namespace log
+} // namespace au
 
 #endif // USE_AU_LOGGER
 

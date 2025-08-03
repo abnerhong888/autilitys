@@ -32,17 +32,18 @@ namespace au {
 #endif
 
 	// Interface Thread Run
-	class IThreadRun
+	class AU_API IThreadRun
 	{
 	public:
 		virtual void Run() {};
 	};
 	
 	// Interface Thread
-	class IThread: public IThreadRun
+	class AU_API IThread: public IThreadRun
 	{
 	public:
-		IThread() {}
+		IThread() = default;
+		~IThread() = default;
 		virtual bool AddJob(thread_fptr fptr) = 0;
 		virtual bool DeleteJob(thread_fptr FuncPtr) = 0;
 		virtual void Start() = 0;
@@ -58,7 +59,7 @@ namespace au {
 
 		bool paused = false;
 		bool terminated = false;
-		bool stopped = false;
+		bool stopped = true;
 		bool onetime_job = false;
 		bool is_working = false;
 		std::string m_thread_name;
@@ -70,16 +71,24 @@ namespace au {
 #pragma region cppThread
 
 	// thread name and thread priority only support on windows 
-	class cppThread : public IThread
+	class AU_API cppThread : public IThread
 	{
 	public:
-		cppThread( std::string _thread_name = "", eThreadPriority _priority = eThreadPriority::SAME,
+		cppThread() {
+
+		}
+
+		~cppThread(){
+			ThreadUnLock();
+			Terminate();
+		}
+		cppThread( std::string _thread_name, eThreadPriority _priority = eThreadPriority::SAME,
 			thread_static_entry_fptr _static_thread_entry = nullptr, void* _user_data = nullptr)
 		{
 			Initialize(_thread_name, _priority, _static_thread_entry, _user_data);
 		}
 
-		void Initialize( std::string _thread_name = "", eThreadPriority _priority = eThreadPriority::SAME,
+		void Initialize( std::string _thread_name, eThreadPriority _priority = eThreadPriority::SAME,
 			thread_static_entry_fptr _static_thread_entry = nullptr, void* _user_data = nullptr
 		);
 		
@@ -347,7 +356,7 @@ namespace au {
 			protected:
 			};
 
-			class Immediate : public cppThread
+			class AU_API Immediate : public cppThread
 			{
 			private:
 				using worker_sptr = std::shared_ptr<TheadWorker>;
@@ -438,7 +447,7 @@ namespace au {
 			};
 
 
-			class Sequential : public cppThread
+			class AU_API Sequential : public cppThread
 			{
 			private:
 				using worker_sptr = std::shared_ptr<TheadWorker>;

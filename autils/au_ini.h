@@ -299,9 +299,9 @@ namespace au {
 				std::fstream file;
 				file.open(_data.path, std::ios::out | std::ios::trunc);
 
-				for (int i = 0; i < _data.container.size(); i++) {
+				for (size_t i = 0; i < _data.container.size(); i++) {
 					file << "[" << _data._idx_map[i] << "]" << "\n";
-					for (int j = 0; j < _data.container[i].container.size(); j++) {
+					for (size_t j = 0; j < _data.container[i].container.size(); j++) {
 						file << _data.container[i]._idx_map[j] << " = " << _data.container[i].container[j].as<std::string>() << " ;\n";
 					}
 					file << ";------------------------------------------------------------\n";
@@ -324,7 +324,7 @@ namespace au {
 				std::string match_key_text = _key + "=.*";
 				bool start = false;
 				bool is_found = false;
-				for (int i = 0; i < list_line.size(); i++) {
+				for (size_t i = 0; i < list_line.size(); i++) {
 					line = std::regex_replace(list_line[i], std::regex("\\s"), "");
 
 					if (!start) {

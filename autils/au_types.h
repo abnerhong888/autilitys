@@ -14,6 +14,12 @@
 #include <cstring>
 #include <cmath>
 
+#if defined(_MSC_VER)
+#	pragma warning(disable: 4002)
+#elif defined(__GNUC__)
+#	pragma GCC diagnostic ignored "-Wclass-memaccess"
+#endif
+
 namespace au {
 	namespace types {
 
@@ -632,6 +638,12 @@ typedef NAME(_type, _n)
 
 	}// namespace types	
 }//namespace au
+
+#if defined(_MSC_VER)
+#	pragma warning(default: 4002)
+#elif defined(__GNUC__)
+#	pragma GCC diagnostic warning "-Wclass-memaccess"
+#endif
 
 #endif // USE_AU_TYPES
 

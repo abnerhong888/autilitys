@@ -118,14 +118,14 @@ namespace au {
 
 #include "au_module_def.h"
 
-
 #ifdef USE_AU_EXCEPTION
-//#       define AU_ASSERT(condition, message)\
-//        (!(condition)) ?\
-//            (std::cerr << "Assertion failed: (" << #condition << "): "\
-//	        << au::exception::error(message, AU_FUNC, AU_LINE, AU_FILE, au::exception::etype::ASSERT).get_error_msg()\
-//            << "\n",abort(), 0) : 1
-
+/*
+#       define AU_ASSERT(condition, message)\
+       (!(condition)) ?\
+           (std::cerr << "Assertion failed: (" << #condition << "): "\
+	        << au::exception::error(message, AU_FUNC, AU_LINE, AU_FILE, au::exception::etype::ASSERT).get_error_msg()\
+           << "\n",abort(), 0) : 1
+*/
 #       define AU_ASSERT(condition, message)\
         (!(condition)) ?\
             ( au::exception::Exception::assertThrow(#condition,\
@@ -141,9 +141,10 @@ namespace au {
           << "\t Message: " << message << "\n", abort(), 0) : 1
 #endif
 
+#define AU_UNUSED(x) (void)(x)
 #define AU_STATIC_ASSERT(condition, message) static_assert(condition, "!!!!! assert: " #condition ", " message " !!!!!")
 #define AU_TRY try
-#define AU_CATCH catch(std::exception e)
+#define AU_CATCH catch(std::exception& e)
 
 #ifdef USE_AU_EXCEPTION
 // _eType example = exception::etype::NULL_POINTER
