@@ -41,7 +41,7 @@ namespace au {
 namespace au {
 	namespace time {
 
-		AU_API static auto get_system_now() {
+		AU_API auto get_system_now() {
 			return std::chrono::system_clock::now();
 		}
 
