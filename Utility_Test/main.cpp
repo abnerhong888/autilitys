@@ -23,6 +23,8 @@ void INI_TEST();
 void Parallel_For_Test();
 void Command_Line_TEST();
 void Protoco_Test();
+void SharedMemory_Test();
+void SharedMutex_Test();
 
 int main()
 {
@@ -34,33 +36,37 @@ int main()
 
 	// Logger_Test();
 
-	Logger_Thread_Test();
+	// Logger_Thread_Test();
 
-	StringCVT_Test();
+	// StringCVT_Test();
 
-	Color_Test();
+	// Color_Test();
 
-	Types_Test();
+	// Types_Test();
 
-	Vector_Test();
+	// Vector_Test();
 
-	PTR_TEST();
+	// PTR_TEST();
 
-	Math_Test();
+	// Math_Test();
 
-	FileSystem_Test();
+	// FileSystem_Test();
 
-	Thread_Test();
+	// Thread_Test();
 	
-	Thread_Pool_Test();
+	// Thread_Pool_Test();
 
-	INI_TEST();
+	// INI_TEST();
 
-	Parallel_For_Test();
+	// Parallel_For_Test();
 
-	Command_Line_TEST();
+	// Command_Line_TEST();
 
-	Protoco_Test();
+	// Protoco_Test();
+
+	SharedMemory_Test();
+
+	SharedMutex_Test();
 
 	au::sleep_ms(10);
 
@@ -803,6 +809,52 @@ void Protoco_Test(){
 		UDPClient client;
 		client.send();
 		au::sleep_ms(1000);
+	}
+	AU_CATCH
+	{
+		log::console::Debug(("{}"), e.what());
+	}
+}
+
+void SharedMemory_Test(){
+	log::console::Write(log::eLevel::none, "\n========= SharedMemory_Test =========\n");
+
+	AU_TRY
+	{
+		struct Test{
+			int a;
+			float b;
+			char c;
+		};
+
+		shm::SharedMemory shm;
+		int ret = shm.map("testSharedMemory", sizeof(Test), O_CREAT | O_RDWR);
+		AU_ASSERT(ret == 0, "SharedMemory map failed.");
+
+		Test* test = (Test*)shm.get_ptr();
+		test->a = 1;
+		test->b = 2.0f;
+		test->c = 'c';
+		
+		shm.release();
+	}
+	AU_CATCH
+	{
+		log::console::Debug(("{}"), e.what());
+	}
+}
+
+void SharedMutex_Test(){
+	log::console::Write(log::eLevel::none, "\n========= SharedMutex_Test =========\n");
+
+	AU_TRY
+	{
+		shm::SharedMutex mutex;
+		int ret = mutex.create("testMutex", O_CREAT | O_RDWR);
+		AU_ASSERT(ret == 0, "SharedMutex create failed.");
+		mutex.lock();
+		mutex.unlock();
+		mutex.release();
 	}
 	AU_CATCH
 	{

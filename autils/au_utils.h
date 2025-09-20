@@ -59,4 +59,12 @@
 #include "au_protoco.h"
 #endif
 
+#ifdef USE_AU_SHARED_MEMORY
+#include "au_shared_memory.h"
+#endif
+
+#ifdef USE_AU_SHARED_MUTEX
+#include "au_shared_mutex.h"
+#endif
+
 #endif //__AU_UTILITYS_H__
