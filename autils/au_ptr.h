@@ -2,6 +2,7 @@
 #define __AU_PTR_H__
 
 #include "au_common.h"
+#include <functional>
 
 #ifdef USE_AU_PTR
 
@@ -112,6 +113,12 @@ namespace au {
 		AU_INLINE static ptr<T> make_ptr_release(T* v)
 		{
 			return std::shared_ptr<T>(v, safe_release<T>);
+		}
+
+		template<typename T>
+		AU_INLINE static ptr<T> make_ptr_release(T* v, std::function<void(T*)> deleter)
+		{
+			return std::shared_ptr<T>(v, deleter);
 		}
 	}
 }
